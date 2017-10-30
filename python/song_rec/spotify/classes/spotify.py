@@ -16,7 +16,7 @@ class Track:
         self.duration_ms = None
         self.explicit = None
         self.external_ids = None
-        self.external_urls = w
+        self.external_urls = None
         self.href = None
         self.id = None
         self.is_playable = None
