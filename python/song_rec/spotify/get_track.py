@@ -24,7 +24,18 @@ def get_artist_dict(artist_id):
     return response.json()
 
 
-def get_playlist_dict(username, playlist_id):
+def get_occurencies(character, str):
+    return [index for index, elem in enumerate(str) if elem == character]
+
+
+def get_playlist_dict(playlist_url):
+    slash_occurencies = get_occurencies('/', playlist_url)
+    username = playlist_url[(slash_occurencies[3] + 1):slash_occurencies[4]]
+    playlist_id = playlist_url[(slash_occurencies[5] + 1):]
+    return get_playlist_dict_from_id(username=username, playlist_id=playlist_id)
+
+
+def get_playlist_dict_from_id(username, playlist_id):
     response = requests.get(PLAYLIST_URL + username + '/playlists/' + playlist_id + '/tracks',
                             headers={'Authorization': 'Bearer %s' % get_auth_token()})
     return response.json()
@@ -42,8 +53,18 @@ def get_artist(artist_id):
     return Artist(get_artist_dict(artist_id))
 
 
-def get_playlist(username, playlist_id):
-    tracks_dict = get_playlist_dict(username, playlist_id)
+def get_playlist(playlist_url):
+    tracks_dict = get_playlist_dict(playlist_url=playlist_url)
+    tracks_list = []
+    for item in tracks_dict['items']:
+        track_dict = item['track']
+        track_object = Track(track_dict)
+        tracks_list.append(track_object)
+    return tracks_list
+
+
+def get_playlist_from_id(username, playlist_id):
+    tracks_dict = get_playlist_dict_from_id(username, playlist_id)
     tracks_list = []
     for item in tracks_dict['items']:
         track_dict = item['track']
