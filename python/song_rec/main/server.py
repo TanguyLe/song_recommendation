@@ -1,5 +1,6 @@
 from flask import Flask, request
 
+import setup_paths
 from recommendation import get_recommendation
 
 
