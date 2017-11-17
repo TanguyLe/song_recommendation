@@ -1,7 +1,7 @@
 import requests
-from auth import get_auth_token
+from spotify.auth import get_auth_token
 
-from classes.spotify import Track, Album, Artist
+from spotify.classes.spotify import Track, Album, Artist
 
 TRACK_URL = 'https://api.spotify.com/v1/tracks/'
 ALBUM_URL = 'https://api.spotify.com/v1/albums/'
