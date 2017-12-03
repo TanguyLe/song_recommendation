@@ -1,5 +1,5 @@
 import requests
-from spotify.constants import CLIENT_ID, CLIENT_SECRET
+from constants import CLIENT_ID, CLIENT_SECRET
 
 DATA_PARAMS = {'grant_type': 'client_credentials'}
 URL = 'https://accounts.spotify.com/api/token'

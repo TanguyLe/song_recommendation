@@ -115,3 +115,15 @@ class Artist:
         # Set each instance attributes to their values from __dict__
         for key, value in self.__dict__.items():
             setattr(self, key, value)
+
+class Error:
+    """A Python object represeting an error when making API call"""
+
+    def __init__(self, erorr_json):
+        self.status = None
+        self.message = None
+        self.__dict__ = erorr_json['error']
+
+        # Set each instance attributes to their values from __dict__
+        for key, value in self.__dict__.items():
+            setattr(self, key, value)

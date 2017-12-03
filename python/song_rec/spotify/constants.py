@@ -1,6 +1,2 @@
-CLIENT_ID = '7a515ee327fb40889ae2061bde1cc571'
-CLIENT_SECRET = '60c72a81940f457ba45ef755f7681b03'
-TRACK_URL = 'https://api.spotify.com/v1/tracks/'
-ALBUM_URL = 'https://api.spotify.com/v1/albums/'
-ARTIST_URL = 'https://api.spotify.com/v1/artists/'
-PLAYLIST_URL = 'https://api.spotify.com/v1/users/'
+CLIENT_ID = "72ecebbcd1394cb7bcc14d2569c782b2"
+CLIENT_SECRET = "849691483b8b4ff6bcc63e0e1317827f"
