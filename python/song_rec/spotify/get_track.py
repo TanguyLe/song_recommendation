@@ -1,6 +1,6 @@
 import requests
 from spotify.auth import get_auth_token
-from spotify.constants import TRACK_URL, ALBUM_URL, ARTIST_URL, PLAYLIST_URL
+from spotify.constants import TRACK_URL, ALBUM_URL, ARTIST_URL, PLAYLIST_URL, AUDIO_FEATURES_URL
 from spotify.classes.spotify import Track, Album, Artist
 
 
@@ -71,12 +71,24 @@ def get_playlist(playlist_url):
 
     tracks_dict = get_playlist_dict(playlist_url=playlist_url)
     tracks_list = []
-    # TODO request audio features
-    for item in tracks_dict['items']:
-        track_dict = item['track']
+
+    tracks_ids = [item['track']['id'] for item in tracks_dict['items']]
+    audio_features = get_audio_features(tracks_ids)
+
+    for item, features in zip(tracks_dict['items'], audio_features):
+        track_dict = {**features, **item['track']}
         track_object = Track(track_dict)
         tracks_list.append(track_object)
     return tracks_list
+
+
+def get_audio_features(tracks_ids):
+    tracks_ids_str = ','.join(tracks_ids)
+
+    response = requests.get(AUDIO_FEATURES_URL.format(tracks_ids_str), headers={'Authorization': 'Bearer %s' % get_auth_token()})
+    response = response.json()
+
+    return response["audio_features"]
 
 
 def get_playlist_from_id(username, playlist_id):

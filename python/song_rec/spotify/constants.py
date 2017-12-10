@@ -10,3 +10,5 @@ CATEGORIES_URL = 'https://api.spotify.com/v1/browse/categories'
 
 DATA_PARAMS = {'grant_type': 'client_credentials'}
 ACCOUNT_URL = 'https://accounts.spotify.com/api/token'
+
+AUDIO_FEATURES_URL = "https://api.spotify.com/v1/audio-features?ids={}"
