@@ -1,8 +1,7 @@
 import requests
-from auth import get_auth_token
-from constants import TRACK_URL, ALBUM_URL, ARTIST_URL, PLAYLIST_URL
-from classes.spotify import Track, Album, Artist
-
+from spotify.auth import get_auth_token
+from spotify.constants import TRACK_URL, ALBUM_URL, ARTIST_URL, PLAYLIST_URL
+from spotify.classes.spotify import Track, Album, Artist
 
 
 def get_track_dict(track_id):
@@ -72,6 +71,7 @@ def get_playlist(playlist_url):
 
     tracks_dict = get_playlist_dict(playlist_url=playlist_url)
     tracks_list = []
+    # TODO request audio features
     for item in tracks_dict['items']:
         track_dict = item['track']
         track_object = Track(track_dict)

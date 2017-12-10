@@ -116,6 +116,7 @@ class Artist:
         for key, value in self.__dict__.items():
             setattr(self, key, value)
 
+
 class Error:
     """A Python object represeting an error when making API call"""
 
